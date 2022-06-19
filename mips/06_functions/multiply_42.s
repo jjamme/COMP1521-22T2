@@ -14,11 +14,6 @@ main__prologue:
         syscall
         move    $t0, $v0
 
-        # Print result str
-        la      $a0, result_str
-        li      $v0, 4
-        syscall
-
         # Call mult_42
                                         # I only want to use $sX instead
         move    $a0, $t0                # of $tX if I need the value in $sX
