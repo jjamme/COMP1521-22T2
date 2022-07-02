@@ -12,6 +12,14 @@ if_col_ge_N_COL:
         # if $t1 >= N_COL, goto end_if_col_ge_N_COL
         bge     $t1, N_COL, end_if_col_ge_N_COL
 
+        # With a 1-D array we skip sizeof(element) to jump to the start
+        # of the next element from the previous one
+        # We can visualise 2-D arrays as layers (rows) of 1-D arrays
+        #
+        # First we must "skip" to the desired layer (row) by multiplying
+        # the `wanted_row` we want to be on by the number of columns there are
+        # as this will skip N_COL elements `wanted_row` times
+        # From here, we can then treat it like a 1-D array
         mul     $t2, $t0, N_COL         # $t2 = row * N_COL
         add     $t2, $t2, $t1           # $t2 = $t2 + col
         mul     $t2, $t2, 4             # $t2 = $t2 * sizeof(word)
