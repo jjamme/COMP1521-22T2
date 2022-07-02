@@ -10,10 +10,9 @@ if_row_ge_N_ROW:
 
 if_col_ge_N_COL:
         # if $t1 >= N_COL, goto end_if_col_ge_N_COL
-        bge     $t1, 10, end_if_col_ge_N_COL
+        bge     $t1, N_COL, end_if_col_ge_N_COL
 
-        # I'll be using both methods of offset calculations again
-        mul     $t2, $t0, 10            # $t2 = row * N_COL
+        mul     $t2, $t0, N_COL         # $t2 = row * N_COL
         add     $t2, $t2, $t1           # $t2 = $t2 + col
         mul     $t2, $t2, 4             # $t2 = $t2 * sizeof(word)
 
@@ -46,11 +45,10 @@ end_if_row_gt_N_ROW:
         jr      $ra
 
 
+N_ROW   = 2
+N_COL   = 10
+
         .data
-N_ROW:  .word 2
-
-N_COL:  .word 10
-
 int_arr:
 		.word 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 		.word 10, 11, 12, 13, 14, 15, 16, 17, 18, 19
